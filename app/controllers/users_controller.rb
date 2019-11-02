@@ -6,6 +6,9 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find_by(id: params[:id])
+    @questions = @user.questions.all
+    @answers = @user.answers.all
   end
 
   def new
@@ -56,6 +59,6 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
 end

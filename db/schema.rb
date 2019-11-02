@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_02_051151) do
+ActiveRecord::Schema.define(version: 2019_11_02_073113) do
 
   create_table "answers", force: :cascade do |t|
     t.string "content"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 2019_11_02_051151) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.text "title"
+    t.string "url"
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
@@ -34,6 +36,9 @@ ActiveRecord::Schema.define(version: 2019_11_02_051151) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email"
+    t.string "password_digest"
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
 end
