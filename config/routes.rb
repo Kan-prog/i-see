@@ -7,9 +7,19 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   
-  resources :answers
-  resources :questions
+  # resources :answers
+  
+  resources :questions do
+    resources :answers, only: [:create]
+  end
+  
   resources :users
   
-  root "users#index"
+  namespace :api, format: 'json' do
+    namespace :v1 do
+      resources :questions
+    end
+  end
+  
+  root "questions#index"
 end

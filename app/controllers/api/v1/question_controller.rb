@@ -1,8 +1,11 @@
-class QuestionsController < ApplicationController
+require "#{Rails.root}/app/controllers/application_controller.rb"
+
+class Api::V1::QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
 
   def index
     @questions = Question.all
+    render json: @questions
   end
 
   def show
@@ -23,10 +26,8 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if @question.save
-        format.html { redirect_to @question, notice: '質問を作成しました' }
         format.json { render :show, status: :created, location: @question }
       else
-        format.html { render :new }
         format.json { render json: @question.errors, status: :unprocessable_entity }
       end
     end
