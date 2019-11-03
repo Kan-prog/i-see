@@ -1,10 +1,10 @@
 <div class="container" style="heght: 100vh; width:80vw;">
   <section class="questions" style="margin-top: 10%;">
-    <h1 style="font-weight: bold">質問一覧</h1>
+    <h1 style="font-weight: bold">未回答の質問一覧</h1>
       <div class="questions_list" style="display: flex margin-top: 5%;">
         <% @questions.each do |question| %>
-          <div class="questions_list_question" style="border: solid 2px #000;">
-            <h2><%= question.title %></h2>
+          <div class="questions_list_question" style="border-bottom: solid 2px #ddd; text-align: center;">
+            <h2><%= question.content %></h2>
             <a href="<%= question.url %>" class="question_url"><%= question.url %></a>
           </div>
         <% end %>
