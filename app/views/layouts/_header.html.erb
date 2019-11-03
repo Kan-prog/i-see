@@ -1,7 +1,10 @@
 <header class="navbar navbar-fixed-top navbar-inverse" style="back-ground-color: #394a6d;">
   <div class="container">
-    <%= link_to "I see!", root_path, id: "logo" %>
-    <nav>
+    <nav  style="height: 10vh;">
+      <div class="wrapper_header" style="height: 100%;">
+        <%= link_to image_tag("logo.png"), root_path, id: "logo"%>
+      </div>
+         
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
           <li><%= link_to "質問作成", new_question_path %></li>
