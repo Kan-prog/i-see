@@ -87,7 +87,10 @@ class AnswersController < ApplicationController
   # def edit
   #   @answer = Answer.find_by(id: params[:id])
   # end
-
+  def index
+    @answers = Answer.all
+  end
+  
   def create
     @question = Question.find(params[:question_id])
     @answer = current_user.answers.build(answer_params)
