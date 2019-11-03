@@ -1,9 +1,9 @@
 <header class="navbar navbar-fixed-top navbar-inverse" style="back-ground-color: #394a6d;">
   <div class="container">
     <nav  style="height: 10vh;">
-      <div style="height: 100%;"> <%#= link_to "I see!", root_path, id: "logo" %>
-    <%= link_to image_tag("logo.png"), root_path, id: "logo", size: '100x200' %>
-    <!--<a href="https://i-see.herokuapp.com/questions/index"><img src="../logo.png"></a>--></div>
+      <div class="wrapper_header" style="height: 100%;">
+        <%= link_to image_tag("logo.png"), root_path, id: "logo"%>
+      </div>
          
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>

@@ -5,14 +5,27 @@
   padding-top: 10vh;
 }
 .navbar-inverse{
-  // background-color: #394a6d;
+  background-color: #fff;
+  border-bottom: 2px solid #868686;
 }
 
-img#logo{
+
+.navbar-nav > li > a{
+  color: #9d9d9d;
+}
+
+.submit{
+  margin-bottom: 10px;
+  // display: relative;
+  text-align: right;
+  // right: 5px;
+}
+
+.wrapper_header > #logo > img{
   position: absolute;
   top: 4px;
   left: 8%;
-  width: 10px;
+  width: 110px;
 }
 
 .navbar{
@@ -27,4 +40,8 @@ img#logo{
 
 .answer{
   border-bottom: solid #ddd 2px;
+}
+
+.wrapper{
+  padding-top: 20vh;
 }

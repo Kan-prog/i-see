@@ -1,33 +1,28 @@
 <div class="container" style="heght: 100vh; width:80vw;">
   <section class="questions" style="margin-top: 10%;">
-    <h1 style="font-weight: bold">未回答の質問一覧</h1>
-      <div class="questions_list" style="display: flex margin-top: 5%;">
-        <% @questions.each do |question| %>
-          <div class="questions_list_question" style="border-bottom: solid 2px #ddd; text-align: center;">
+    <h1 style="font-weight: bold">質問一覧</h1>
+    <div class="questions_list" style="margin-top: 5%;">
+      <% @questions.each do |question| %>
+        <% unless question.answers.count.blank? %>
+          <div class="questions_list_question" style="border-bottom: solid 2px #ddd; text-align: center; margin-bottom: 5vh; clear: both;">
             <h2><%= question.content %></h2>
             <a href="<%= question.url %>" class="question_url"><%= question.url %></a>
-          </div>
-        <% end %>
-      </div>
-
-<% if false %>
+  
           <%= form_for Answer.new, url: question_answers_path(question.id) do |f| %>
-
+  
             <%= f.text_field :content, class: "form-control" %>
             <br>
-            <%= f.submit '回答する', class: 'btn btn-primary col-xs-offset-1 col-xs-2' %>
+            <%= f.submit '回答する', class: 'btn btn-primary submit' %>
           <% end %>
+  
+          <%# question.answers.each do |answer| %>
+           <%#= answer.content %>
+          <%# end %>
+        </div>
+      <% end %>  
+        
+      <% end %>  
 
-          <% question.answers.each do |answer| %>
-           <%= answer.content %>
-          <% end %>
-
-          </div>
-
-
-
-    <%= link_to '質問作成', new_question_path %>
-<% end %>
-
+    </div>
   </section>
 </div>
