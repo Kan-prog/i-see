@@ -5,9 +5,6 @@ class QuestionsController < ApplicationController
     @questions = Question.all
     @answer = Answer.new
     
-    respond_to do |format|
-      format.json { hoge: 1 }
-    end   
   end
 
   def show
