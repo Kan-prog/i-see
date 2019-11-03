@@ -2,47 +2,45 @@
   <section class="user_info" style="margin-top: 10%;">
     <div class="user_info_contents" style="margin-top: 5%; display: flex;">
         <%= gravatar_for @user %>
-      <h1 style="padding-left: 100px; font-size: 50px; margin-top:0; padding-bottom: 10px;">
-        <div>
-          <%= @user.name %>
-        </div>
-        <div style="font-size: 0.7em; padding-bottom: 10px;">
-          <% if @user.answers.count > 5 %>救世主<% end %>
-        </div>
-        <div style="font-size: 0.5em; padding-bottom: 10px;">
+      <div style="padding-left: 100px; margin-top:0; padding-bottom: 10px;">
+        <h1 style="font-size: 60px;"><%= @user.name %></h1>
+        <h2 class="user_class" style="font-size: 30px;">
+          <% if @user.answers.count >= 1 %>知識人<% end %>
+          <% if @user.answers.count >= 5 %>救世主<% end %>
+        </h2>
+        <p style="font-size: 20; padding-bottom: 10px;">
           回答数：<%= @user.answers.count %>
-        </div>
-      </h1>
+        </p>
+      </div>
     </div>
   </section>
-  <section class="history" style="height: 100%; margin-top: 10vh;">
-    
-    
-    <div class="col-xs-6">
-      <p>今までに回答した質問</p>
-      <div class="history_contents">
-        <div class="answers answer" style="font-size: 2em; font-weight: bold;">
-          <% @answers.each do |answer| %>
-              <div class="col-xs-3">
-                <span class="fa fa-heart col-xs-3"style="color: rgb(223, 86, 86);"></span>
-              </div>
-              <div class="col-xs-9 answer">
+
+  <section class="history" style="height: 100%; margin-top: 10vh; display: flex; justify-content: space-around;">
+    <div class="user_answer" style="margin-right: 10px; margin-left: 10px;">
+      <h2>今までに回答した質問</h2>
+      <div class="user_answers_list" style="display: flex flex-direction: column;">
+        <% @answers.each do |answer| %>
+          <div class="answers_answer" style="text-align: center; font-size">
+              <span class="fa fa-heart col-xs-3"style="color: rgb(223, 86, 86);"></span>
                 <%= answer.content %>
-              </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+
+
+    <div class="user_question" style="margin-right: 10px; margin-left: 10px;">
+      <h2>今までにした質問</h2>
+        <div class="user_answers_list" style="display: flex flex-direction: column;">
+          <% @questions.each do |question| %>
+            <div class="questions_question" style="margin-top: 15px;">
+              <span class="fa fa-heart col-xs-3"style="color: rgb(223, 86, 86);"></span>
+                <%= question.title %>
+            </div>
           <% end %>
         </div>
-      </div>
-    </div>  
-    
-    
-    <div class="questions col-xs-6">
-      <p>今までの質問</p>
-      <% @questions.each do |question| %>
-      <div class="col-xs-offset-3 col-xs-9" style="font-size: 2em; font-weight: bold; border-bottom: solid #ddd 2px;">
-        <%= question.title %>
-      </div>  
-      <% end %>
     </div>
-      
+
+
   </section>
 </div>
