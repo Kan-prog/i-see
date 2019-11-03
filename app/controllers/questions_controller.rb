@@ -24,7 +24,7 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if @question.save
-        format.html { redirect_to root, notice: '質問を作成しました' }
+        format.html { redirect_to root_url, notice: '質問を作成しました' }
         format.json { render :show, status: :created, location: @question }
       else
         format.html { render :new }
