@@ -2,22 +2,49 @@
   <section class="user_info" style="margin-top: 10%;">
     <div class="user_info_contents" style="margin-top: 5%; display: flex;">
         <%= gravatar_for @user %>
-      <h1 style="padding-left: 100px; font-size: 50px"><%= @user.name %></h1>
+      <h1 style="padding-left: 100px; font-size: 50px; margin-top:0; padding-bottom: 10px;">
+        <div>
+          <%= @user.name %>
+        </div>
+        <div style="font-size: 0.7em; padding-bottom: 10px;">
+          <% if @user.answers.count > 5 %>救世主<% end %>
+        </div>
+        <div style="font-size: 0.5em; padding-bottom: 10px;">
+          回答数：<%= @user.answers.count %>
+        </div>
+      </h1>
     </div>
   </section>
-  <section class="history" style="height: 100%;">
-    <p>今までに回答した質問</p>
-    <div class="history_contents" style="display: flex; ">
-      <div class="answers" style="font-size: 2em; font-weight: bold;">
-        <% @answers.each do |answer| %>
-          <%= answer.content %>
-        <% end %>
+  <section class="history" style="height: 100%; margin-top: 10vh;">
+    
+    
+    <div class="col-xs-6">
+      <p>今までに回答した質問</p>
+      <div class="history_contents">
+        <div class="answers answer" style="font-size: 2em; font-weight: bold;">
+          <% @answers.each do |answer| %>
+            <!--<div class="answer">-->
+              <div class="col-xs-3">
+                <span class="fa fa-heart col-xs-3"></span>
+              </div>
+              <div class="col-xs-9 answer">
+                <%= answer.content %>
+              </div>
+            <!--</div>  -->
+          <% end %>
+        </div>
       </div>
-      <div class="questions" style="text-align: left;">
-        <% @questions.each do |question| %>
-          <%= question.title %>
-        <% end %>
-      </div>
+    </div>  
+    
+    
+    <div class="questions col-xs-6">
+      <p>今までの質問</p>
+      <% @questions.each do |question| %>
+      <div class="col-xs-offset-3 col-xs-9" style="font-size: 2em; font-weight: bold; border-bottom: solid #ddd 2px;">
+        <%= question.title %>
+      </div>  
+      <% end %>
     </div>
+      
   </section>
 </div>
