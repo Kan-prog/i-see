@@ -1,23 +1,23 @@
-<h1>ユーザー詳細ページ</h1>
-<%= @user.name %>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
+<div class="container" style="heght: 100vh; width:80vw;">
+  <section class="user_info" style="margin-top: 10%;">
+    <div class="user_info_contents" style="margin-top: 5%; display: flex;">
         <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
-    </section>
-  </aside>
-  <div class="questions">
-    <% @questions.each do |question| %>
-      <%= question.title %>
-      <%= question.content %>
-    <% end %>  
-  </div>
-  <div class="answers">
-    <% @answers.each do |answer| %>
-      <%= answer.content %>
-    <% end %>  
-  </div>
+      <h1 style="padding-left: 100px; font-size: 50px"><%= @user.name %></h1>
+    </div>
+  </section>
+  <section class="history" style="height: 100%;">
+    <p>今までに回答した質問</p>
+    <div class="history_contents" style="display: flex; ">
+      <div class="answers" style="font-size: 2em; font-weight: bold;">
+        <% @answers.each do |answer| %>
+          <%= answer.content %>
+        <% end %>
+      </div>
+      <div class="questions" style="text-align: left;">
+        <% @questions.each do |question| %>
+          <%= question.title %>
+        <% end %>
+      </div>
+    </div>
+  </section>
 </div>
