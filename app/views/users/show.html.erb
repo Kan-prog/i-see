@@ -23,14 +23,12 @@
       <div class="history_contents">
         <div class="answers answer" style="font-size: 2em; font-weight: bold;">
           <% @answers.each do |answer| %>
-            <!--<div class="answer">-->
               <div class="col-xs-3">
-                <span class="fa fa-heart col-xs-3"></span>
+                <span class="fa fa-heart col-xs-3"style="color: rgb(223, 86, 86);"></span>
               </div>
               <div class="col-xs-9 answer">
                 <%= answer.content %>
               </div>
-            <!--</div>  -->
           <% end %>
         </div>
       </div>
