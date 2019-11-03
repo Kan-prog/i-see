@@ -1,14 +1,11 @@
-class QuestionsController < ApplicationController
-  # before_action :set_question, only: [:show, :edit, :update, :destroy]
+require "#{Rails.root}/app/controllers/application_controller.rb"
+
+class Api::V1::AnswersController < ApplicationController
+  before_action :set_question, only: [:show, :edit, :update, :destroy]
 
   def index
-    @questions = Question.all
-    @answer = Answer.new
-  end
-
-  def show
-    @question = Question.find_by(id: params[:id])
-    @answers = @question.answers.all
+    @answers = Answer.all
+    render json: @answers
   end
 
   def new
@@ -20,15 +17,19 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = current_user.questions.build(question_params)
+    @question = Question.find(params[:question_id])
+    @answer = current_user.answers.build(answer_params)
+    @answer.user_id = current_user.id
+    @answer.question_id = @question.id
+    @answers = @question.answers
 
     respond_to do |format|
-      if @question.save
-        format.html { redirect_to root, notice: '質問を作成しました' }
-        format.json { render :show, status: :created, location: @question }
+      if @answer.save
+        format.html { redirect_to questions_path, notice: '回答を作成しました' }
+        format.json { render :show, status: :created, location: @answer }
       else
         format.html { render :new }
-        format.json { render json: @question.errors, status: :unprocessable_entity }
+        format.json { render json: @answer.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -54,12 +55,11 @@ class QuestionsController < ApplicationController
   end
 
   private
-    # def set_question
-    #   @question = Question.find(params[:id])
-    # end
+    def set_question
+      @question = Question.find(params[:id])
+    end
 
     def question_params
       params.require(:question).permit(:content, :url, :title)
     end
-    
 end

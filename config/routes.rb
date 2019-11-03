@@ -10,16 +10,17 @@ Rails.application.routes.draw do
   # resources :answers
   
   resources :questions do
-    resources :answers, only: [:create]
+    resources :answers, only: [:create, :index]
   end
   
   resources :users
   
-  namespace :api, format: 'json' do
-    namespace :v1 do
-      resources :questions
-    end
-  end
+  # namespace :api, format: 'json' do
+  #   namespace :v1 do
+  #     resources :questions
+  #     resources :answers
+  #   end
+  # end
   
   root "questions#index"
 end
